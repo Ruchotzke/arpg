@@ -29,6 +29,11 @@ namespace arpg
             InputManager.Instance.Unsubscribe(OnInputEvent);
         }
 
+        private void Update()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// The event used to catch inputs.
         /// </summary>
@@ -40,9 +45,23 @@ namespace arpg
                 case "MoveCommand":
                     if(ctx.performed) OnMoveCommand();
                     break;
+                case "MoveHeld":
+                    if (ctx.performed) OnMoveHeldStarted();
+                    else if(ctx.canceled) OnMoveHeldEnded();
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void OnMoveHeldStarted()
+        {
+            Debug.Log("Held!");
+        }
+        
+        private void OnMoveHeldEnded()
+        {
+            Debug.Log("No longer held!");
         }
 
         /// <summary>
