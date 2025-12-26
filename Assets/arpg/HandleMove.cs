@@ -12,6 +12,7 @@ namespace arpg
     public class HandleMove : MonoBehaviour
     {
         private NavMeshAgent _agent;
+        private bool _isSmoothMoving = false;
 
         private void Awake()
         {
@@ -31,7 +32,21 @@ namespace arpg
 
         private void Update()
         {
-            throw new NotImplementedException();
+            /* Handle smooth movement */
+            if (_isSmoothMoving)
+            {
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.value), out var hit, Mathf.Infinity, LayerMask.GetMask(new string[] { "Terrain-Walkable", "Terrain-Obstacle" })))
+                {
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Terrain-Obstacle"))
+                    {
+                        /* Do nothing, we clicked a non-floor */
+                        return;
+                    }
+                
+                    /* Handle the pathing */
+                    _agent.SetDestination(hit.point);
+                }
+            }
         }
 
         /// <summary>
@@ -57,11 +72,17 @@ namespace arpg
         private void OnMoveHeldStarted()
         {
             Debug.Log("Held!");
+            _isSmoothMoving = true;
         }
         
         private void OnMoveHeldEnded()
         {
             Debug.Log("No longer held!");
+            if (_isSmoothMoving)
+            {
+                _agent.SetDestination(transform.position);
+            }
+            _isSmoothMoving = false;
         }
 
         /// <summary>
