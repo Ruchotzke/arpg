@@ -14,15 +14,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MoveHeld",
-                    "type": "Button",
-                    "id": "96e5c40d-b830-4621-937f-171418f978fc",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -34,17 +25,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "MoveCommand",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "127e677e-81b1-4bf8-bd58-0c961ee1ebd4",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveHeld",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

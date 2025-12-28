@@ -58,11 +58,8 @@ namespace arpg
             switch (ctx.action.name)
             {
                 case "MoveCommand":
-                    if(ctx.performed) OnMoveCommand();
-                    break;
-                case "MoveHeld":
-                    if (ctx.performed) OnMoveHeldStarted();
-                    else if(ctx.canceled) OnMoveHeldEnded();
+                    if(ctx.started) OnMoveHeldStarted();
+                    if(ctx.canceled) OnMoveHeldEnded();
                     break;
                 default:
                     break;
@@ -78,33 +75,11 @@ namespace arpg
         private void OnMoveHeldEnded()
         {
             Debug.Log("No longer held!");
-            if (_isSmoothMoving)
-            {
-                _agent.SetDestination(transform.position);
-            }
+            // if (_isSmoothMoving)
+            // {
+            //     _agent.SetDestination(transform.position);
+            // }
             _isSmoothMoving = false;
-        }
-
-        /// <summary>
-        /// A callback for the movement command being utilized.
-        /// </summary>
-        private void OnMoveCommand()
-        {
-            /* Figure out the world collision point */
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.value), out var hit, Mathf.Infinity, LayerMask.GetMask(new string[] { "Terrain-Walkable", "Terrain-Obstacle" })))
-            {
-                Debug.Log($"Hit at {hit.point} with layer {LayerMask.LayerToName(hit.transform.gameObject.layer)}");
-                
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Terrain-Obstacle"))
-                {
-                    /* Do nothing, we clicked a non-floor */
-                    return;
-                }
-                
-                /* Handle the pathing */
-                _agent.SetDestination(hit.point);
-            }
-            
         }
     }
 
