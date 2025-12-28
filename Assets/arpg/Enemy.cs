@@ -19,19 +19,12 @@ namespace arpg
         private NavMeshAgent _agent;
 
         private Health _health;
-
-        private float _decay;
-
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _health = GetComponent<Health>();
             
             _health.OnDeath += OnDeath;
-
-            _decay = Random.Range(1f, 20f);
-
-            StartCoroutine(HealthDecrease());
         }
 
         private void Update()
@@ -46,15 +39,6 @@ namespace arpg
         private void OnDeath()
         {
             Destroy(gameObject);
-        }
-
-        IEnumerator HealthDecrease()
-        {
-            while (true)
-            {
-                yield return new WaitForEndOfFrame();
-                _health.CurrentHealth -= _decay * Time.deltaTime;
-            }
         }
     }
 }

@@ -13,12 +13,16 @@ namespace arpg.ui
         /// The sprite representing health.
         /// </summary>
         public Image FillSprite;
+
+        private bool _lateStart = true;
         
         private void Start()
         {
             /* Set the callback from a health object in the hierarchy */
             var health = transform.GetComponentInParent<Health>();
             health.OnHealthChange += OnUpdate;
+
+            OnUpdate(health.CurrentHealth, health.MaxHealth, 0);
         }
 
         /// <summary>
