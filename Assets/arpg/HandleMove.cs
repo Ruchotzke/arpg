@@ -68,17 +68,11 @@ namespace arpg
 
         private void OnMoveHeldStarted()
         {
-            Debug.Log("Held!");
             _isSmoothMoving = true;
         }
         
         private void OnMoveHeldEnded()
         {
-            Debug.Log("No longer held!");
-            // if (_isSmoothMoving)
-            // {
-            //     _agent.SetDestination(transform.position);
-            // }
             _isSmoothMoving = false;
         }
     }

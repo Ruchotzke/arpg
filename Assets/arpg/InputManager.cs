@@ -24,21 +24,6 @@ namespace arpg
             
             /* Grab input */
             _playerInput = GetComponent<PlayerInput>();
-            _playerInput.onActionTriggered += OnActionTriggered;
-        }
-
-        /// <summary>
-        /// The handler for input.
-        /// </summary>
-        /// <param name="context"></param>
-        private void OnActionTriggered(InputAction.CallbackContext context)
-        {
-            switch (context.action.name)
-            {
-                default:
-                    // Debug.LogError($"Unknown action: {context.action.name}");
-                    break;
-            }
         }
 
         /// <summary>

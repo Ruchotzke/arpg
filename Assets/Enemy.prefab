@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 985947087487168244}
   - component: {fileID: 3406934605094487782}
   - component: {fileID: 485406955938101856}
+  - component: {fileID: 4495004225236424494}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -148,3 +149,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89cd4caa51d470b9d53c81864cd4f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::arpg.Enemy
+--- !u!114 &4495004225236424494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788801884520087686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1278e5b3b5403b9a53f79ea834abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::arpg.Health
+  _maxHealth: 50
+  _currHealth: 50
